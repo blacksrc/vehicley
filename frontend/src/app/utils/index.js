@@ -32,6 +32,6 @@ export default class Utils {
   }
 
   static getVehiclesStatus(status) {
-    return Statuses.filter(defaultStatus => defaultStatus.value === status)[0].label;
+    return Statuses.filter(defaultStatus => defaultStatus.value === status)[0];
   }
 }

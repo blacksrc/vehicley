@@ -7,6 +7,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Section from '../../components/Section';
 import Loading from '../../components/Loading';
+import Status from '../../components/Status';
 import Customer from '../../api/Customer';
 import Utils from '../../utils';
 import './assets/VehiclesList.scss';
@@ -64,7 +65,9 @@ class VehicleList extends Component {
                       <TableRow key={`${customer.id}_${vehicle.id}`}>
                         <TableCell>{vehicle.model}</TableCell>
                         <TableCell>{vehicle.registration_number}</TableCell>
-                        <TableCell>{Utils.getVehiclesStatus(vehicle.status)}</TableCell>
+                        <TableCell>
+                          <Status status={Utils.getVehiclesStatus(vehicle.status)} />
+                        </TableCell>
                         <TableCell>{customer.name}</TableCell>
                         <TableCell>{customer.address}</TableCell>
                       </TableRow>
