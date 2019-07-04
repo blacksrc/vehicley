@@ -37,7 +37,7 @@ module.exports = () => {
         ownerAddress: "Balkvägen 12, 222 22 Stockholm"
       },
       {
-        id: "VLUR4X20009048066",
+        id: "FLUR4X20009048266",
         model: "Ford",
         registration_number: "PQR678",
         ownerName: "Haralds Värdetransporter",

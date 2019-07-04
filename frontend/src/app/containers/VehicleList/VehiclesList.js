@@ -32,7 +32,9 @@ class VehicleList extends Component {
       isLoading: true
     });
 
-    const result = await this.vehicleObject.getVehicles();
+    const params = { status: 1 };
+
+    const result = await this.vehicleObject.getVehicles(params);
     if (result.status === 'success' && result.data !== undefined) {
       this.setState({
         isLoading: false,

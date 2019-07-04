@@ -39,7 +39,7 @@ class API {
     };
   }
 
-  async request(path, method = 'GET', data = {}) {
+  async request(path, method = 'GET', params = {}, data = {}) {
     this.params.url = path;
     this.params.method = method;
     this.params.data = data;
@@ -49,7 +49,7 @@ class API {
       .request({
         method,
         url: path,
-        data
+        params
       })
       .then(
         response => ({
