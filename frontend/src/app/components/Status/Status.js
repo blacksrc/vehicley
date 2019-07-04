@@ -5,8 +5,7 @@ const Status = ({ status }) => {
   return (
     <span className="status-component">
       <div className="text" style={{ color: status.color }}>
-        {' '}
-        {status.label}{' '}
+        {status.label}
       </div>
     </span>
   );
