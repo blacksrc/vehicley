@@ -8,7 +8,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Section from '../../components/Section';
 import Loading from '../../components/Loading';
 import Status from '../../components/Status';
-import Customer from '../../api/Customer';
+import Vehicle from '../../api/Vehicle';
 import Utils from '../../utils';
 import './assets/VehiclesList.scss';
 
@@ -16,33 +16,33 @@ class VehicleList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      customers: [],
+      vehicles: [],
       isLoading: true
     };
 
-    this.customerObject = new Customer();
+    this.vehicleObject = new Vehicle();
   }
 
   componentDidMount() {
-    this.loadCustomers();
+    this.loadVehicles();
   }
 
-  async loadCustomers() {
+  async loadVehicles() {
     this.setState({
       isLoading: true
     });
 
-    const result = await this.customerObject.getCustomers();
+    const result = await this.vehicleObject.getVehicles();
     if (result.status === 'success' && result.data !== undefined) {
       this.setState({
         isLoading: false,
-        customers: result.data
+        vehicles: result.data
       });
     }
   }
 
   render() {
-    const { isLoading, customers } = this.state;
+    const { isLoading, vehicles } = this.state;
 
     return (
       <Section title="Vehicles List" icon={<DirectionsCarOutlined />}>
@@ -59,20 +59,18 @@ class VehicleList extends Component {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {customers.length >= 1 ? (
-                  customers.map(customer =>
-                    customer.vehicles.map(vehicle => (
-                      <TableRow key={`${customer.id}_${vehicle.id}`}>
-                        <TableCell>{vehicle.model}</TableCell>
-                        <TableCell>{vehicle.registration_number}</TableCell>
-                        <TableCell>
-                          <Status status={Utils.getVehiclesStatus(vehicle.status)} />
-                        </TableCell>
-                        <TableCell>{customer.name}</TableCell>
-                        <TableCell>{customer.address}</TableCell>
-                      </TableRow>
-                    ))
-                  )
+                {vehicles.length >= 1 ? (
+                  vehicles.map(vehicle => (
+                    <TableRow key={vehicle.id}>
+                      <TableCell>{vehicle.model}</TableCell>
+                      <TableCell>{vehicle.registration_number}</TableCell>
+                      <TableCell>
+                        <Status status={Utils.getVehiclesStatus(vehicle.status)} />
+                      </TableCell>
+                      <TableCell>{vehicle.ownerName}</TableCell>
+                      <TableCell>{vehicle.ownerAddress}</TableCell>
+                    </TableRow>
+                  ))
                 ) : (
                   <TableRow key={0}>
                     <TableCell colSpan={5}>No record found!</TableCell>

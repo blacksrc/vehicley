@@ -48,7 +48,7 @@ class API {
     const result = await this.axiosObject
       .request({
         method,
-        url: '/customers',
+        url: path,
         data
       })
       .then(
