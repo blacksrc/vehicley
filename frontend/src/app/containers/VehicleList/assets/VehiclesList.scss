@@ -1,0 +1,17 @@
+@import '../../../assets/stylesheet/variables.scss';
+
+.vehicles-list-component {
+  padding: 10px;
+  overflow-x: auto;
+
+  .table {
+    min-width: 915px;
+
+    .head .title {
+      font-size: 1em;
+      color: $primaryColor;
+      text-align: left;
+      padding: 14px 40px 14px 16px;
+    }
+  }
+}

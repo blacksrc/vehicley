@@ -1,0 +1,20 @@
+@import '../../../assets/stylesheet/variables.scss';
+
+.section-component {
+  padding: 10px;
+
+  .title {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: $secondaryColor;
+
+    .MuiSvgIcon-root {
+      vertical-align: middle;
+      margin: -4px 5px 0 0;
+    }
+  }
+
+  .divider {
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,20 @@
+@import '../../../assets/stylesheet/variables.scss';
+
+.filter-component {
+  padding: 10px;
+
+  .filter-item {
+    margin-bottom: 20px;
+  }
+
+  .label {
+    font-size: 1em;
+    margin-bottom: 10px;
+    color: $primaryColor;
+
+    .icon {
+      vertical-align: middle;
+      margin: -4px 5px 0 0;
+    }
+  }
+}
