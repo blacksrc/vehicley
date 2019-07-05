@@ -2,14 +2,9 @@ import React, { Component } from 'react';
 import { AdjustOutlined, PersonOutline, FilterListOutlined } from '@material-ui/icons/';
 import Select from 'react-select';
 import Section from '../../components/Section';
+import Customer from '../../api/Customer';
 import { Statuses } from '../../config';
 import './assets/Filter.scss';
-
-const customersList = [
-  { value: 'siamak', label: 'siamak' },
-  { value: 'ati', label: 'ati' },
-  { value: 'babak', label: 'babak' }
-];
 
 class Filter extends Component {
   constructor(props) {
@@ -17,8 +12,13 @@ class Filter extends Component {
     const { filters } = this.props;
     this.state = {
       customers: filters.customers,
-      status: filters.status
+      status: filters.status,
+      customersList: []
     };
+  }
+
+  componentDidMount() {
+    this.loadCustomers();
   }
 
   onChangeFilters() {
@@ -42,7 +42,16 @@ class Filter extends Component {
     });
   };
 
+  async loadCustomers() {
+    const customerObject = new Customer();
+    const customersList = await customerObject.getCustomers();
+    this.setState({
+      customersList
+    });
+  }
+
   render() {
+    const { customersList } = this.state;
     const { filters } = this.props;
 
     return (

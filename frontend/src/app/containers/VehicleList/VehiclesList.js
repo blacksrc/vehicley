@@ -39,8 +39,14 @@ class VehicleList extends Component {
     const { filters } = this.props;
     const params = {};
 
-    if (filters !== undefined && filters.status !== undefined && filters.status.value !== null) {
-      params.status = filters.status.value;
+    if (filters !== undefined) {
+      if (filters.status !== undefined && filters.status.value !== null) {
+        params.status = filters.status.value;
+      }
+
+      if (filters.customers !== undefined && filters.customers !== null) {
+        params.ownerName = Array.from(filters.customers, customer => customer.value);
+      }
     }
 
     return params;
