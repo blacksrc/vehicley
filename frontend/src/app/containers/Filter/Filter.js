@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import i18next from 'i18next';
+import { withTranslation } from 'react-i18next';
 import { AdjustOutlined, PersonOutline, FilterListOutlined } from '@material-ui/icons/';
 import Select from 'react-select';
 import Section from '../../components/Section';
@@ -55,12 +57,12 @@ class Filter extends Component {
     const { filters } = this.props;
 
     return (
-      <Section title="Filter" icon={<FilterListOutlined />}>
+      <Section title={i18next.t('filter')} icon={<FilterListOutlined />}>
         <div className="filter-component">
           <div className="filter-item">
             <div className="label">
               <PersonOutline className="icon" />
-              Customer
+              {i18next.t('customer')}
             </div>
 
             <Select
@@ -68,17 +70,22 @@ class Filter extends Component {
               onChange={this.handleCustomerChange}
               options={customersList}
               isMulti
-              placeholder="Select Customer(s)..."
+              placeholder={`${i18next.t('selectCustomer')}...`}
             />
           </div>
 
           <div className="filter-item">
             <div className="label">
               <AdjustOutlined className="icon" />
-              Status
+              {i18next.t('status')}
             </div>
 
-            <Select value={filters.status} onChange={this.handleStatusChange} options={Statuses} />
+            <Select
+              value={filters.status}
+              onChange={this.handleStatusChange}
+              options={Statuses}
+              placeholder={`${i18next.t('selectStatus')}...`}
+            />
           </div>
         </div>
       </Section>
@@ -86,4 +93,4 @@ class Filter extends Component {
   }
 }
 
-export default Filter;
+export default withTranslation('translations')(Filter);

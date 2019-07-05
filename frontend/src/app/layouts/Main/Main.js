@@ -2,6 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Filter from '../../containers/Filter';
 import VehicleList from '../../containers/VehicleList';
+import Language from '../../containers/Language';
 import './assets/Main.scss';
 
 const Main = () => {
@@ -9,6 +10,7 @@ const Main = () => {
     <div className="main-layout">
       <Grid container spacing={2}>
         <Grid item xs={12} md={3}>
+          <Language />
           <Filter />
         </Grid>
         <Grid item xs={12} md={9}>

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import i18next from 'i18next';
+import { withTranslation } from 'react-i18next';
 import { DirectionsCarOutlined } from '@material-ui/icons/';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -72,17 +74,17 @@ class VehicleList extends Component {
     const { isLoading, vehicles } = this.state;
 
     return (
-      <Section title="Vehicles List" icon={<DirectionsCarOutlined />}>
+      <Section title={i18next.t('vehiclesList')} icon={<DirectionsCarOutlined />}>
         <div className="vehicles-list-component">
           {!isLoading ? (
             <Table className="table">
               <TableHead className="head">
                 <TableRow>
-                  <TableCell className="title">Model</TableCell>
-                  <TableCell className="title">Reg. No.</TableCell>
-                  <TableCell className="title">Status</TableCell>
-                  <TableCell className="title">Owner</TableCell>
-                  <TableCell className="title">Owner Address</TableCell>
+                  <TableCell className="title">{i18next.t('model')}</TableCell>
+                  <TableCell className="title">{i18next.t('registrationNumber')}</TableCell>
+                  <TableCell className="title">{i18next.t('status')}</TableCell>
+                  <TableCell className="title">{i18next.t('owner')}</TableCell>
+                  <TableCell className="title">{i18next.t('ownerAddress')}</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -100,13 +102,13 @@ class VehicleList extends Component {
                   ))
                 ) : (
                   <TableRow key={0}>
-                    <TableCell colSpan={5}>No record found!</TableCell>
+                    <TableCell colSpan={5}>{i18next.t('noVehicleFound')}!</TableCell>
                   </TableRow>
                 )}
               </TableBody>
             </Table>
           ) : (
-            <Loading text="Loading vehicles list" />
+            <Loading text={i18next.t('loadingVehicleList')} />
           )}
         </div>
       </Section>
@@ -114,4 +116,4 @@ class VehicleList extends Component {
   }
 }
 
-export default VehicleList;
+export default withTranslation('translations')(VehicleList);
