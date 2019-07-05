@@ -1,37 +1,34 @@
 import { Statuses } from '../config';
 
-export default class Utils {
-  static truncate(string, maxLength, separator = '...', position = 'right') {
-    if (string === null) {
-      return null;
+export const loadState = () => {
+  try {
+    const serializedState = localStorage.getItem('state');
+    if (serializedState === null) {
+      return {};
     }
-
-    if (string.length <= maxLength) {
-      return string;
-    }
-
-    const charsToShow = maxLength;
-    let frontChars = '';
-    let backChars = '';
-
-    switch (position) {
-      case 'center':
-        frontChars = Math.ceil(charsToShow / 2);
-        backChars = Math.floor(charsToShow / 2);
-        break;
-      case 'left':
-        backChars = Math.floor(charsToShow);
-        break;
-      case 'right':
-      default:
-        frontChars = Math.ceil(charsToShow);
-        break;
-    }
-
-    return string.substr(0, frontChars) + separator + string.substr(string.length - backChars);
+    return JSON.parse(serializedState);
+  } catch (err) {
+    return {};
   }
+};
 
-  static getVehiclesStatus(status) {
-    return Statuses.filter(defaultStatus => defaultStatus.value === status)[0].label;
+export const saveState = state => {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem('state', serializedState);
+  } catch (err) {
+    console.log('Can not save state into local storage.');
   }
-}
+};
+
+export const clearState = () => {
+  try {
+    localStorage.clear();
+  } catch (err) {
+    console.log('Can not clear state from local storage.');
+  }
+};
+
+export const getVehiclesStatus = status => {
+  return Statuses.filter(defaultStatus => defaultStatus.value === status)[0];
+};

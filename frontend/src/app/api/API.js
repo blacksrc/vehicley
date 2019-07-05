@@ -39,7 +39,7 @@ class API {
     };
   }
 
-  async request(path, method = 'GET', data = {}) {
+  async request(path, method = 'GET', params = {}, data = {}) {
     this.params.url = path;
     this.params.method = method;
     this.params.data = data;
@@ -48,8 +48,8 @@ class API {
     const result = await this.axiosObject
       .request({
         method,
-        url: '/customers',
-        data
+        url: path,
+        params
       })
       .then(
         response => ({
