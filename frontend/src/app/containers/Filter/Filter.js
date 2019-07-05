@@ -1,57 +1,91 @@
 import React, { Component } from 'react';
+import i18next from 'i18next';
+import { withTranslation } from 'react-i18next';
 import { AdjustOutlined, PersonOutline, FilterListOutlined } from '@material-ui/icons/';
 import Select from 'react-select';
 import Section from '../../components/Section';
+import Customer from '../../api/Customer';
 import { Statuses } from '../../config';
 import './assets/Filter.scss';
 
-const customers = [
-  { value: 'siamak', label: 'siamak' },
-  { value: 'ati', label: 'ati' },
-  { value: 'babak', label: 'babak' }
-];
-
 class Filter extends Component {
-  state = {
-    selectedCustomers: null,
-    selectedStatus: Statuses[0]
+  constructor(props) {
+    super(props);
+    const { filters } = this.props;
+    this.state = {
+      customers: filters.customers,
+      status: filters.status,
+      customersList: []
+    };
+  }
+
+  componentDidMount() {
+    this.loadCustomers();
+  }
+
+  onChangeFilters() {
+    const { setFilters } = this.props;
+    const { status, customers } = this.state;
+    setFilters({
+      status,
+      customers
+    });
+  }
+
+  handleStatusChange = status => {
+    this.setState({ status }, () => {
+      this.onChangeFilters();
+    });
   };
 
-  handleCustomerChange = selectedCustomers => {
-    this.setState({ selectedCustomers });
+  handleCustomerChange = customers => {
+    this.setState({ customers }, () => {
+      this.onChangeFilters();
+    });
   };
 
-  handleStatusChange = selectedStatus => {
-    this.setState({ selectedStatus });
-  };
+  async loadCustomers() {
+    const customerObject = new Customer();
+    const customersList = await customerObject.getCustomers();
+    this.setState({
+      customersList
+    });
+  }
 
   render() {
-    const { selectedCustomers, selectedStatus } = this.state;
+    const { customersList } = this.state;
+    const { filters } = this.props;
 
     return (
-      <Section title="Filter" icon={<FilterListOutlined />}>
+      <Section title={i18next.t('filter')} icon={<FilterListOutlined />}>
         <div className="filter-component">
           <div className="filter-item">
             <div className="label">
               <PersonOutline className="icon" />
-              Customer
+              {i18next.t('customer')}
             </div>
 
             <Select
-              value={selectedCustomers}
+              value={filters.customers}
               onChange={this.handleCustomerChange}
-              options={customers}
+              options={customersList}
               isMulti
-              placeholder="Select Customer(s)..."
+              placeholder={`${i18next.t('selectCustomer')}...`}
             />
           </div>
 
           <div className="filter-item">
             <div className="label">
               <AdjustOutlined className="icon" />
-              Status
+              {i18next.t('status')}
             </div>
-            <Select value={selectedStatus} onChange={this.handleStatusChange} options={Statuses} />
+
+            <Select
+              value={filters.status}
+              onChange={this.handleStatusChange}
+              options={Statuses}
+              placeholder={`${i18next.t('selectStatus')}...`}
+            />
           </div>
         </div>
       </Section>
@@ -59,4 +93,4 @@ class Filter extends Component {
   }
 }
 
-export default Filter;
+export default withTranslation('translations')(Filter);

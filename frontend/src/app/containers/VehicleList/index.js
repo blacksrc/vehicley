@@ -1,3 +1,10 @@
+import { connect } from 'react-redux';
 import VehiclesList from './VehiclesList';
 
-export default VehiclesList;
+const mapStateToProps = state => {
+  return {
+    filters: state.filters
+  };
+};
+
+export default connect(mapStateToProps)(VehiclesList);
