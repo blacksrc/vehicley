@@ -5,28 +5,45 @@ import Section from '../../components/Section';
 import { Statuses } from '../../config';
 import './assets/Filter.scss';
 
-const customers = [
+const customersList = [
   { value: 'siamak', label: 'siamak' },
   { value: 'ati', label: 'ati' },
   { value: 'babak', label: 'babak' }
 ];
 
 class Filter extends Component {
-  state = {
-    selectedCustomers: null,
-    selectedStatus: Statuses[0]
+  constructor(props) {
+    super(props);
+    const { filters } = this.props;
+    this.state = {
+      customers: filters.customers,
+      status: filters.status
+    };
+  }
+
+  onChangeFilters() {
+    const { setFilters } = this.props;
+    const { status, customers } = this.state;
+    setFilters({
+      status,
+      customers
+    });
+  }
+
+  handleStatusChange = status => {
+    this.setState({ status }, () => {
+      this.onChangeFilters();
+    });
   };
 
-  handleCustomerChange = selectedCustomers => {
-    this.setState({ selectedCustomers });
-  };
-
-  handleStatusChange = selectedStatus => {
-    this.setState({ selectedStatus });
+  handleCustomerChange = customers => {
+    this.setState({ customers }, () => {
+      this.onChangeFilters();
+    });
   };
 
   render() {
-    const { selectedCustomers, selectedStatus } = this.state;
+    const { filters } = this.props;
 
     return (
       <Section title="Filter" icon={<FilterListOutlined />}>
@@ -38,9 +55,9 @@ class Filter extends Component {
             </div>
 
             <Select
-              value={selectedCustomers}
+              value={filters.customers}
               onChange={this.handleCustomerChange}
-              options={customers}
+              options={customersList}
               isMulti
               placeholder="Select Customer(s)..."
             />
@@ -51,7 +68,8 @@ class Filter extends Component {
               <AdjustOutlined className="icon" />
               Status
             </div>
-            <Select value={selectedStatus} onChange={this.handleStatusChange} options={Statuses} />
+
+            <Select value={filters.status} onChange={this.handleStatusChange} options={Statuses} />
           </div>
         </div>
       </Section>

@@ -1,7 +1,7 @@
-import { setFilters } from './vehichle/actions';
+import { setFilters } from './filters/actions';
 
 const actions = {
-  vehichle: {
+  filters: {
     setFilters
   }
 };

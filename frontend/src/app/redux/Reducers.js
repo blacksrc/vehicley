@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import vehichleReducer from './vehichle/reducers';
+import filtersReducer from './filters/reducers';
 
 const rootReducer = combineReducers({
-  vehichle: vehichleReducer
+  filters: filtersReducer
 });
 
 export default rootReducer;

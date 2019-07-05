@@ -2,7 +2,7 @@ import { SET_FILTERS } from './types';
 
 const initialState = [];
 
-const vehichleReducer = (state = initialState, action) => {
+const filtersReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_FILTERS:
       return action.payload;
@@ -12,4 +12,4 @@ const vehichleReducer = (state = initialState, action) => {
   }
 };
 
-export default vehichleReducer;
+export default filtersReducer;
