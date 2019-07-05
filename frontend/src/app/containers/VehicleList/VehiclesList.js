@@ -15,6 +15,7 @@ import './assets/VehiclesList.scss';
 class VehicleList extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       vehicles: [],
       isLoading: true
@@ -27,12 +28,30 @@ class VehicleList extends Component {
     this.loadVehicles();
   }
 
+  componentDidUpdate(prevProps) {
+    const { filters } = this.props;
+    if (prevProps.filters !== filters) {
+      this.loadVehicles();
+    }
+  }
+
+  prepareParams() {
+    const { filters } = this.props;
+    const params = {};
+
+    if (filters !== undefined && filters.status !== undefined && filters.status.value !== null) {
+      params.status = filters.status.value;
+    }
+
+    return params;
+  }
+
   async loadVehicles() {
     this.setState({
       isLoading: true
     });
 
-    const params = { status: 1 };
+    const params = this.prepareParams();
 
     const result = await this.vehicleObject.getVehicles(params);
     if (result.status === 'success' && result.data !== undefined) {
