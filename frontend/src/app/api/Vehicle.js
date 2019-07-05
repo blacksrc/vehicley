@@ -6,7 +6,7 @@ class Vehicle extends API {
     this.init();
   }
 
-  async getVehicles(params) {
+  async getVehicles(params = {}) {
     const vehicles = await this.request('/vehicles', 'GET', params);
     return vehicles;
   }
