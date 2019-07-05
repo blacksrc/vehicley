@@ -9,7 +9,7 @@ import Section from '../../components/Section';
 import Loading from '../../components/Loading';
 import Status from '../../components/Status';
 import Vehicle from '../../api/Vehicle';
-import Utils from '../../utils';
+import { getVehiclesStatus } from '../../utils';
 import './assets/VehiclesList.scss';
 
 class VehicleList extends Component {
@@ -67,7 +67,7 @@ class VehicleList extends Component {
                       <TableCell>{vehicle.model}</TableCell>
                       <TableCell>{vehicle.registration_number}</TableCell>
                       <TableCell>
-                        <Status status={Utils.getVehiclesStatus(vehicle.status)} />
+                        <Status status={getVehiclesStatus(vehicle.status)} />
                       </TableCell>
                       <TableCell>{vehicle.ownerName}</TableCell>
                       <TableCell>{vehicle.ownerAddress}</TableCell>
