@@ -93,7 +93,7 @@ class API {
    *
    * @return string
    */
-  static createBaseUrl(domain, port, version) {
+  static createBaseUrl(domain = 'http://localhost', port = 80, version = null) {
     return version ? `${domain}:${port}/v${version}/` : `${domain}:${port}/`;
   }
 }
