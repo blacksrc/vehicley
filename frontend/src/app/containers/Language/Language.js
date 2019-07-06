@@ -17,6 +17,7 @@ class Language extends Component {
     };
   }
 
+  // If user changes the language manually
   changeLanguageHandler(event) {
     const newLanguage = event.target.value;
     this.setState({

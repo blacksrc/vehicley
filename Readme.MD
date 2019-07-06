@@ -47,7 +47,7 @@ $ yarn start
 - [X] API class.
 - [X] Localization.
 - [ ] Error handling.
-- [ ] Inline code documentation.
+- [X] Inline code documentation.
 - [ ] Create frontend documantation using Storybook or docz.
 - [ ] Unit test.
 - [ ] Integration test.

@@ -3,6 +3,11 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import { withStyles } from '@material-ui/core/styles';
 import './assets/Loading.scss';
 
+/**
+ * Loading component. It shows loading bar with the given text.
+ *
+ * @param string text
+ */
 const Loading = ({ text = `Loading` }) => {
   const ColorLinearProgress = withStyles({
     colorPrimary: {

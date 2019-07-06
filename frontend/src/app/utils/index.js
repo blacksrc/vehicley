@@ -1,5 +1,10 @@
 import { Statuses } from '../config';
 
+/**
+ * Load state from local storage
+ *
+ * @return object
+ */
 export const loadState = () => {
   try {
     const serializedState = localStorage.getItem('state');
@@ -12,6 +17,11 @@ export const loadState = () => {
   }
 };
 
+/**
+ * Save state to local storage
+ *
+ * @param object state
+ */
 export const saveState = state => {
   try {
     const serializedState = JSON.stringify(state);
@@ -21,6 +31,9 @@ export const saveState = state => {
   }
 };
 
+/**
+ * Clears local storage
+ */
 export const clearState = () => {
   try {
     localStorage.clear();
@@ -29,6 +42,12 @@ export const clearState = () => {
   }
 };
 
+/**
+ * Return status
+ *
+ * @param int status
+ * @return object
+ */
 export const getVehiclesStatus = status => {
   return Statuses.filter(defaultStatus => defaultStatus.value === status)[0];
 };
