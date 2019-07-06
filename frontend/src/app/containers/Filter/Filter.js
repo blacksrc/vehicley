@@ -23,6 +23,7 @@ class Filter extends Component {
     this.loadCustomers();
   }
 
+  // Update redux store on filter change
   onChangeFilters() {
     const { setFilters } = this.props;
     const { status, customers } = this.state;
@@ -44,6 +45,7 @@ class Filter extends Component {
     });
   };
 
+  // Load customers list to filter dropdown
   async loadCustomers() {
     const customerObject = new Customer();
     const customersList = await customerObject.getCustomers();

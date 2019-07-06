@@ -30,6 +30,7 @@ class VehicleList extends Component {
     this.loadVehicles();
   }
 
+  // If filter changes in redux component should reload the vehichles list
   componentDidUpdate(prevProps) {
     const { filters } = this.props;
     if (prevProps.filters !== filters) {
@@ -37,15 +38,18 @@ class VehicleList extends Component {
     }
   }
 
+  // Prepare query params in order to filter response
   prepareParams() {
     const { filters } = this.props;
     const params = {};
 
     if (filters !== undefined) {
+      // Add status filter to param
       if (filters.status !== undefined && filters.status.value !== null) {
         params.status = filters.status.value;
       }
 
+      // Add customer filter to params
       if (filters.customers !== undefined && filters.customers !== null) {
         params.ownerName = Array.from(filters.customers, customer => customer.value);
       }
@@ -54,6 +58,7 @@ class VehicleList extends Component {
     return params;
   }
 
+  // Load vehicles list and set it to vehicles state.
   async loadVehicles() {
     this.setState({
       isLoading: true
