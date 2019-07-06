@@ -1,6 +1,10 @@
 import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
+/*
+ * Handling Locale
+ * English and French added
+ */
 i18n.use(LanguageDetector).init({
   resources: {
     en: {
@@ -44,7 +48,7 @@ i18n.use(LanguageDetector).init({
       }
     }
   },
-  fallbackLng: 'en',
+  fallbackLng: 'en', // If there was no language set or detected
   debug: false,
   ns: ['translations'],
   defaultNS: 'translations',

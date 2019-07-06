@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { api } from '../config';
 
+// Base API class. This Class is not for direct usage.
+// Extend your model class from API class.
 class API {
   constructor(config = {}) {
     this.config = {
@@ -22,6 +24,11 @@ class API {
     this.axiosObject = null;
   }
 
+  /**
+   * Initialize api axios config. Merges user prefered config with default configs
+   *
+   * @param params object
+   */
   init(params = {}) {
     this.params = {
       ...{
@@ -39,6 +46,16 @@ class API {
     };
   }
 
+  /**
+   * Make http request.
+   *
+   * @param path string
+   * @param method string (GET|POST|PUT|...)
+   * @param params object (query params)
+   * @param data object (request body data)
+   *
+   * @return object (response object)
+   */
   async request(path, method = 'GET', params = {}, data = {}) {
     this.params.url = path;
     this.params.method = method;
@@ -67,6 +84,15 @@ class API {
     return result;
   }
 
+  /**
+   * Create base url of api
+   *
+   * @param domain string
+   * @param port string
+   * @param version string | null
+   *
+   * @return string
+   */
   static createBaseUrl(domain, port, version) {
     return version ? `${domain}:${port}/v${version}/` : `${domain}:${port}/`;
   }

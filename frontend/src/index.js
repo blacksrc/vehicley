@@ -7,6 +7,11 @@ import store from './app/redux/Store';
 import App from './app/App';
 import * as serviceWorker from './serviceWorker';
 
+/*
+ * <Provider> It is used to make redux state available all over the components,
+ * <I18nextProvider> It is used to make transaltion available all over the components,
+ * <App> The whole application is loading in it.
+ */
 ReactDOM.render(
   <Provider store={store}>
     <I18nextProvider i18n={i18n}>

@@ -6,6 +6,13 @@ class Customer extends API {
     this.init();
   }
 
+  /**
+   * Returns customer's list.
+   * This method need to request to custmer url.
+   * However, because the data shape of fake server, It is fetched out of vehicles resource.
+   *
+   * @return Array (array of customer objects)
+   */
   async getCustomers() {
     const customers = await this.request('/vehicles', 'GET');
     let customersList = [];
