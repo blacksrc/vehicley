@@ -52,3 +52,4 @@ $ yarn start
 - [ ] Unit test.
 - [ ] Integration test.
 - [ ] e2e test.
+- [ ] Dockerizing.
