@@ -40,6 +40,13 @@ REACT_APP_API_VERSION=<API version: v1> #Leave it empty if you are using typicod
 ```sh
 $ yarn start
 ```
+
+## Stories
+To see components documentation via [Storybook](https://storybook.js.org/) run the command below:
+```sh
+$ yarn storybook
+```
+
 # Todo
 - [X] Filter Component.
 - [X] List component.
@@ -48,7 +55,7 @@ $ yarn start
 - [X] Localization.
 - [ ] Error handling.
 - [X] Inline code documentation.
-- [ ] Create frontend documantation using Storybook or docz.
+- [X] Create frontend documantation using Storybook.
 - [ ] Unit test.
 - [ ] Integration test.
 - [ ] e2e test.
