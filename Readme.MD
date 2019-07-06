@@ -15,7 +15,7 @@ $ git clone git@github.com:blacksrc/blookey.git
 
 2. Cd to backend directory and Run json server: 
 ```sh
-$ json-server --watch index.js --delay 1000
+$ json-server --watch index.js --delay=1000
 ```
 3. It will start the json server on **localhost** port **3000**.<br>
 [http://localhost:3000](http://localhost:3000)
