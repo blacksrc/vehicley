@@ -6,7 +6,7 @@ A simple vehicle traking app based on React library.
 
 Clone the project:
 ```sh
-$ git clone git@github.com:blacksrc/blookey.git
+$ git clone git@github.com:blacksrc/vehicley.git
 ```
 
 ## Backend
