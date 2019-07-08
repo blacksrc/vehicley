@@ -31,7 +31,7 @@ $ yarn install
 
 ```env
 PORT=<Application running port: 3001>
-REACT_APP_API_HOST=<API host: localhost>
+REACT_APP_API_HOST=<API host: http://localhost>
 REACT_APP_API_PORT=<API port: 3000>
 REACT_APP_API_VERSION=<API version: v1> #Leave it empty if you are using typicode/json-server 
 ```
